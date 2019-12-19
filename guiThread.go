@@ -28,7 +28,8 @@ func checkGUI() {
 
 //`--kiosk-printing` ,`--disable-print-preview`, `--use-system-default-printer`,
 func startGUI() int {
-	cmd := exec.Command(root, `--new-window`, `--kiosk`, `--suppress-message-center-popups`, `--user-data-dir=`+root+`Data`, url)
+	//	cmd := exec.Command(root, `--new-window`, `--kiosk`, `--suppress-message-center-popups`, `--user-data-dir=`+root+`Data`, url)
+	cmd := exec.Command(root, `--new-window`, `--kiosk`, `--incognito`, `--suppress-message-center-popups`, `--user-data-dir=`+root+`Data`, url)
 	if err := cmd.Run(); err != nil {
 		log.Println("Error:", err)
 		return -1

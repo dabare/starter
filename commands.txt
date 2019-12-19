@@ -1,0 +1,9 @@
+go build -ldflags -H=windowsgui
+
+setx GOOGLE_API_KEY no
+setx GOOGLE_DEFAULT_CLIENT_ID no
+setx GOOGLE_DEFAULT_CLIENT_SECRET no
+
+
+127.0.0.1 apiserver
+127.0.0.1 server
