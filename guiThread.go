@@ -2,8 +2,10 @@ package main
 
 import (
 	"github.com/mitchellh/go-ps"
+	"io/ioutil"
 	"log"
 	"os/exec"
+	"strings"
 	"time"
 )
 
@@ -28,8 +30,13 @@ func checkGUI() {
 
 //`--kiosk-printing` ,`--disable-print-preview`, `--use-system-default-printer`,  `--incognito`,
 func startGUI() int {
+	b, err := ioutil.ReadFile("starter.conf")
+	if err != nil {
+		log.Fatal(err)
+	}
 	//	cmd := exec.Command(root, `--new-window`, `--kiosk`, `--suppress-message-center-popups`, `--user-data-dir=`+root+`Data`, url)
-	cmd := exec.Command(root, `--new-window`, `--kiosk`, `--kiosk-printing`, `--suppress-message-center-popups`, `--user-data-dir=Data`, url)
+	//cmd := exec.Command(root, `--new-window`, `--kiosk`, `--incognito`, `--kiosk-printing`, `--suppress-message-center-popups`, `--user-data-dir=Data`, url)
+	cmd := exec.Command(root, strings.Split(string(b), " ")...)
 	if err := cmd.Run(); err != nil {
 		log.Println("Error:", err)
 		return -1
